@@ -1366,7 +1366,7 @@
           "desktop": "3D",
           "headset": "AR",
           "world": {
-            "disableWorldTracking": true
+            "disableWorldTracking": false
           }
         }
       },
@@ -1410,7 +1410,8 @@
       "imageTarget": {
         "name": "toggle-slam"
       },
-      "order": 3.8421274092108453
+      "order": 3.8421274092108453,
+      "disabled": true
     },
     "91576797-b198-4057-89f6-e37f24fbb359": {
       "id": "91576797-b198-4057-89f6-e37f24fbb359",
