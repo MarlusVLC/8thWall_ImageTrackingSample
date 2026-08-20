@@ -2241,6 +2241,65 @@
       "order": 17.028744183474238,
       "parentId": "377b65a9-0810-4e9a-8efd-261b32b1bd8b",
       "hidden": true
+    },
+    "876d9595-818e-48fe-ab46-2d88372d308b": {
+      "id": "876d9595-818e-48fe-ab46-2d88372d308b",
+      "position": [
+        6.074604797985154,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "scale": [
+        3,
+        3,
+        3
+      ],
+      "geometry": null,
+      "material": null,
+      "parentId": "88453035-dc0f-486d-868a-8ff7c2fda864",
+      "components": {},
+      "name": "Cartao",
+      "imageTarget": {
+        "name": "Cartao_Frente"
+      },
+      "order": 7.978500415916699
+    },
+    "823fc859-bf52-457d-a745-662d2e371bf1": {
+      "id": "823fc859-bf52-457d-a745-662d2e371bf1",
+      "position": [
+        0,
+        0,
+        0.20993635462409965
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "scale": [
+        0.2,
+        0.2,
+        0.2
+      ],
+      "geometry": {
+        "type": "sphere",
+        "radius": 0.5
+      },
+      "material": {
+        "type": "basic",
+        "color": "#FFFFFF"
+      },
+      "parentId": "876d9595-818e-48fe-ab46-2d88372d308b",
+      "components": {},
+      "name": "Sphere",
+      "order": 8.986749984828883
     }
   },
   "spaces": {
@@ -2257,7 +2316,7 @@
       },
       "sky": {
         "type": "gradient",
-        "style": "linear",
+        "style": "radial",
         "colors": [
           "#464766",
           "#0F0E1A"

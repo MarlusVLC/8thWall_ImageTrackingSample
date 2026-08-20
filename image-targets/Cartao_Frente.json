@@ -1,0 +1,23 @@
+{
+  "type": "PLANAR",
+  "properties": {
+    "top": 289,
+    "left": 102,
+    "width": 481,
+    "height": 641,
+    "isRotated": true,
+    "originalWidth": 670,
+    "originalHeight": 1245
+  },
+  "imagePath": "image-targets/Cartao_Frente_luminance.png",
+  "metadata": null,
+  "name": "Cartao_Frente",
+  "resources": {
+    "originalImage": "Cartao_Frente_original.png",
+    "croppedImage": "Cartao_Frente_cropped.png",
+    "thumbnailImage": "Cartao_Frente_thumbnail.png",
+    "luminanceImage": "Cartao_Frente_luminance.png"
+  },
+  "created": 1787255894227,
+  "updated": 1787255985601
+}
