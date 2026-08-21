@@ -2251,10 +2251,10 @@
         0
       ],
       "rotation": [
+        -0.7071067811865475,
         0,
         0,
-        0,
-        1
+        0.7071067811865476
       ],
       "scale": [
         3,
@@ -2271,8 +2271,36 @@
       },
       "order": 7.978500415916699
     },
-    "b30c8593-116c-4f89-8ff9-e8eb9060f1cf": {
-      "id": "b30c8593-116c-4f89-8ff9-e8eb9060f1cf",
+    "21f2c6ae-284e-4287-9d1c-53229a8a53de": {
+      "id": "21f2c6ae-284e-4287-9d1c-53229a8a53de",
+      "position": [
+        14.187224775393162,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "scale": [
+        3,
+        3,
+        3
+      ],
+      "geometry": null,
+      "material": null,
+      "components": {},
+      "name": "Cartao_Verso",
+      "imageTarget": {
+        "name": "Cartao_Verso"
+      },
+      "order": 9.604790642127943,
+      "parentId": "88453035-dc0f-486d-868a-8ff7c2fda864"
+    },
+    "13708fe1-4d32-4e4e-a784-d376468fa0cf": {
+      "id": "13708fe1-4d32-4e4e-a784-d376468fa0cf",
       "position": [
         0,
         0,
@@ -2285,13 +2313,13 @@
         0.7071067811865476
       ],
       "scale": [
-        1,
-        1,
-        1
+        0.75,
+        0.7499999999999999,
+        0.7499999999999999
       ],
       "geometry": null,
       "material": null,
-      "parentId": "876d9595-818e-48fe-ab46-2d88372d308b",
+      "parentId": "21f2c6ae-284e-4287-9d1c-53229a8a53de",
       "components": {},
       "gltfModel": {
         "src": {
@@ -2301,8 +2329,41 @@
         "animationClip": "rotate",
         "loop": true
       },
-      "name": "bouquet.glb",
-      "order": 10.125514488984845
+      "name": "bouquet.glb (1)",
+      "order": 1
+    },
+    "39dc298e-81e6-422b-a694-30ecd83d1590": {
+      "id": "39dc298e-81e6-422b-a694-30ecd83d1590",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "rotation": [
+        0.7071067811865475,
+        0,
+        0,
+        0.7071067811865476
+      ],
+      "scale": [
+        0.25,
+        0.25,
+        0.25
+      ],
+      "geometry": null,
+      "material": null,
+      "parentId": "876d9595-818e-48fe-ab46-2d88372d308b",
+      "components": {},
+      "gltfModel": {
+        "src": {
+          "type": "asset",
+          "asset": "assets/random-props/charizard_sv.glb"
+        },
+        "animationClip": "pm0006_00_00_00000_defaultwait01_loop",
+        "loop": true
+      },
+      "name": "charizard_sv.glb",
+      "order": 1.8642479457748604
     }
   },
   "spaces": {

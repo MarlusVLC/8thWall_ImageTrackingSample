@@ -9,6 +9,7 @@ const onxrloaded = () => {
       require('../image-targets/toggle-slam.json'),
       require('../image-targets/waves.json'),
       require('../image-targets/Cartao_Frente.json'),
+      require('../image-targets/Cartao_Verso.json'),
     ],
   })
   XR8.addCameraPipelineModule(LandingPage.pipelineModule())

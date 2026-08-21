@@ -1,0 +1,23 @@
+{
+  "type": "PLANAR",
+  "properties": {
+    "top": 273,
+    "left": 0,
+    "width": 681,
+    "height": 908,
+    "isRotated": true,
+    "originalWidth": 681,
+    "originalHeight": 1241
+  },
+  "imagePath": "image-targets/Cartao_Verso_luminance.png",
+  "metadata": null,
+  "name": "Cartao_Verso",
+  "resources": {
+    "originalImage": "Cartao_Verso_original.png",
+    "croppedImage": "Cartao_Verso_cropped.png",
+    "thumbnailImage": "Cartao_Verso_thumbnail.png",
+    "luminanceImage": "Cartao_Verso_luminance.png"
+  },
+  "created": 1787332248716,
+  "updated": 1787332299944
+}
