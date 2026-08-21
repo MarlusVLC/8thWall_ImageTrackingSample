@@ -2271,36 +2271,38 @@
       },
       "order": 7.978500415916699
     },
-    "823fc859-bf52-457d-a745-662d2e371bf1": {
-      "id": "823fc859-bf52-457d-a745-662d2e371bf1",
+    "b30c8593-116c-4f89-8ff9-e8eb9060f1cf": {
+      "id": "b30c8593-116c-4f89-8ff9-e8eb9060f1cf",
       "position": [
         0,
         0,
-        0.20993635462409965
+        0
       ],
       "rotation": [
+        0.7071067811865475,
         0,
         0,
-        0,
-        1
+        0.7071067811865476
       ],
       "scale": [
-        0.2,
-        0.2,
-        0.2
+        1,
+        1,
+        1
       ],
-      "geometry": {
-        "type": "sphere",
-        "radius": 0.5
-      },
-      "material": {
-        "type": "basic",
-        "color": "#FFFFFF"
-      },
+      "geometry": null,
+      "material": null,
       "parentId": "876d9595-818e-48fe-ab46-2d88372d308b",
       "components": {},
-      "name": "Sphere",
-      "order": 8.986749984828883
+      "gltfModel": {
+        "src": {
+          "type": "asset",
+          "asset": "assets/random-props/bouquet.glb"
+        },
+        "animationClip": "rotate",
+        "loop": true
+      },
+      "name": "bouquet.glb",
+      "order": 10.125514488984845
     }
   },
   "spaces": {
