@@ -1,0 +1,23 @@
+{
+  "type": "PLANAR",
+  "properties": {
+    "top": 0,
+    "left": 128,
+    "width": 768,
+    "height": 1024,
+    "isRotated": false,
+    "originalWidth": 1024,
+    "originalHeight": 1024
+  },
+  "imagePath": "image-targets/Marker-01_luminance.png",
+  "metadata": null,
+  "name": "Marker-01",
+  "resources": {
+    "originalImage": "Marker-01_original.png",
+    "croppedImage": "Marker-01_cropped.png",
+    "thumbnailImage": "Marker-01_thumbnail.png",
+    "luminanceImage": "Marker-01_luminance.png"
+  },
+  "created": 1788210000876,
+  "updated": 1788210000876
+}

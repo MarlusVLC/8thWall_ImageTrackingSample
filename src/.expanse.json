@@ -225,7 +225,8 @@
       "imageTarget": {
         "name": "22_Element_Air"
       },
-      "order": 2.150211680966083
+      "order": 2.150211680966083,
+      "disabled": true
     },
     "15816879-3500-4b51-9c88-2419bf1a7bff": {
       "id": "15816879-3500-4b51-9c88-2419bf1a7bff",
@@ -259,7 +260,8 @@
         "loop": true
       },
       "name": "0_Card_Container.gltf",
-      "order": 2.716933167964583
+      "order": 2.716933167964583,
+      "disabled": true
     },
     "26105c67-faa8-43cb-901e-6fcb80f31f87": {
       "id": "26105c67-faa8-43cb-901e-6fcb80f31f87",
@@ -290,7 +292,8 @@
         "loop": true
       },
       "name": "0_Card_Front.gltf",
-      "order": 0.2059880580250355
+      "order": 0.2059880580250355,
+      "disabled": true
     },
     "0cfa66a2-eff3-41a1-b0f0-0bcfc198966f": {
       "id": "0cfa66a2-eff3-41a1-b0f0-0bcfc198966f",
@@ -321,7 +324,8 @@
         "loop": true
       },
       "name": "22_Element_Air.gltf",
-      "order": 3.8259768816164055
+      "order": 3.8259768816164055,
+      "disabled": true
     },
     "28878a86-3de0-4d09-a97d-e2aca00f534b": {
       "id": "28878a86-3de0-4d09-a97d-e2aca00f534b",
@@ -345,7 +349,8 @@
       "material": null,
       "parentId": "a8f21946-b2fe-4589-9302-6232ec649775",
       "components": {},
-      "name": "Card"
+      "name": "Card",
+      "disabled": true
     },
     "fa9f1e85-91a8-4d7c-88e9-f63f0a3f0e81": {
       "id": "fa9f1e85-91a8-4d7c-88e9-f63f0a3f0e81",
@@ -373,7 +378,8 @@
       "imageTarget": {
         "name": "23_Element_Water"
       },
-      "order": 3.681079881923593
+      "order": 3.681079881923593,
+      "disabled": true
     },
     "d344585b-22b4-49ab-96b8-6d07012a39dd": {
       "id": "d344585b-22b4-49ab-96b8-6d07012a39dd",
@@ -397,7 +403,8 @@
       "material": null,
       "parentId": "fa9f1e85-91a8-4d7c-88e9-f63f0a3f0e81",
       "components": {},
-      "name": "Card"
+      "name": "Card",
+      "disabled": true
     },
     "0a66b32e-b653-43ef-ba69-b69fc236c5a6": {
       "id": "0a66b32e-b653-43ef-ba69-b69fc236c5a6",
@@ -431,7 +438,8 @@
         "loop": true
       },
       "name": "0_Card_Container.gltf",
-      "order": 0.48035683673324503
+      "order": 0.48035683673324503,
+      "disabled": true
     },
     "096e63a7-1a4d-4e13-85a6-caa07f78e552": {
       "id": "096e63a7-1a4d-4e13-85a6-caa07f78e552",
@@ -462,7 +470,8 @@
         "loop": true
       },
       "name": "0_Card_Front.gltf",
-      "order": 0.2059880580250355
+      "order": 0.2059880580250355,
+      "disabled": true
     },
     "543b0031-e027-4d0c-9129-ed558a1776c1": {
       "id": "543b0031-e027-4d0c-9129-ed558a1776c1",
@@ -493,7 +502,8 @@
         "loop": true
       },
       "name": "23_Element_Water.gltf",
-      "order": 0.7960714756297046
+      "order": 0.7960714756297046,
+      "disabled": true
     },
     "9e8d85dc-ed76-4e95-933b-896094458bde": {
       "id": "9e8d85dc-ed76-4e95-933b-896094458bde",
@@ -521,7 +531,8 @@
       "imageTarget": {
         "name": "25_Element_Earth"
       },
-      "order": 5.546400582424154
+      "order": 5.546400582424154,
+      "disabled": true
     },
     "ee9c57e2-266c-4ada-b2c2-d75518b49425": {
       "id": "ee9c57e2-266c-4ada-b2c2-d75518b49425",
@@ -545,7 +556,8 @@
       "material": null,
       "parentId": "9e8d85dc-ed76-4e95-933b-896094458bde",
       "components": {},
-      "name": "Card"
+      "name": "Card",
+      "disabled": true
     },
     "a75f7292-09c1-4446-8129-2ec59e0094c8": {
       "id": "a75f7292-09c1-4446-8129-2ec59e0094c8",
@@ -576,7 +588,8 @@
         "loop": true
       },
       "name": "25_Element_Earth.gltf",
-      "order": 3.244088868463868
+      "order": 3.244088868463868,
+      "disabled": true
     },
     "3cfec7f2-6686-4ec4-b09e-3156dad6b74e": {
       "id": "3cfec7f2-6686-4ec4-b09e-3156dad6b74e",
@@ -607,7 +620,8 @@
         "loop": true
       },
       "name": "0_Card_Front.gltf",
-      "order": -3.707290811090295
+      "order": -3.707290811090295,
+      "disabled": true
     },
     "78a96e21-9e95-469b-afd2-c42b68efde7e": {
       "id": "78a96e21-9e95-469b-afd2-c42b68efde7e",
@@ -641,7 +655,8 @@
         "loop": true
       },
       "name": "0_Card_Container.gltf",
-      "order": -2.0190705743302577
+      "order": -2.0190705743302577,
+      "disabled": true
     },
     "cac6e34c-a449-4bd8-9fad-3bb9d083b92a": {
       "id": "cac6e34c-a449-4bd8-9fad-3bb9d083b92a",
@@ -669,7 +684,8 @@
       "imageTarget": {
         "name": "20_Element_Fire"
       },
-      "order": 6.768719824337127
+      "order": 6.768719824337127,
+      "disabled": true
     },
     "608c9340-f8f8-4b2b-94d6-d0e9d818411e": {
       "id": "608c9340-f8f8-4b2b-94d6-d0e9d818411e",
@@ -2364,6 +2380,102 @@
       },
       "name": "charizard_sv.glb",
       "order": 1.8642479457748604
+    },
+    "5026e906-b9c4-4d3f-947d-3357c463a618": {
+      "id": "5026e906-b9c4-4d3f-947d-3357c463a618",
+      "position": [
+        0,
+        1.00315567543762,
+        4.158362997149045
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "scale": [
+        5,
+        5,
+        5
+      ],
+      "geometry": null,
+      "material": null,
+      "parentId": "88453035-dc0f-486d-868a-8ff7c2fda864",
+      "components": {},
+      "name": "Target_Marker-01",
+      "imageTarget": {
+        "name": "Marker-01"
+      },
+      "order": 10.689805861628926
+    },
+    "52eb5ea6-dc47-436d-a664-6d8469f6d055": {
+      "id": "52eb5ea6-dc47-436d-a664-6d8469f6d055",
+      "position": [
+        -0.35008339827122514,
+        0.2763684094828267,
+        0.08392423911085789
+      ],
+      "rotation": [
+        0.5853170659261305,
+        0.24175207235291832,
+        0.26272358872678725,
+        0.7279671584454982
+      ],
+      "scale": [
+        0.049999999999999996,
+        0.05000000000000001,
+        0.05
+      ],
+      "geometry": null,
+      "material": null,
+      "parentId": "5026e906-b9c4-4d3f-947d-3357c463a618",
+      "components": {},
+      "gltfModel": {
+        "src": {
+          "type": "asset",
+          "asset": "assets/random-props/1969_dodge_charger_rt_gt2psx_styleorient.glb"
+        },
+        "animationClip": "",
+        "loop": true
+      },
+      "name": "1969_dodge_charger_rt_gt2psx_styleorient.glb",
+      "order": 10.081760892552133,
+      "shadow": {
+        "castShadow": true,
+        "receiveShadow": true
+      }
+    },
+    "0bd7b199-657f-4131-8e61-abdac127c994": {
+      "id": "0bd7b199-657f-4131-8e61-abdac127c994",
+      "position": [
+        0.4089416472748408,
+        -0.36234688500920254,
+        0.09091197124181738
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "geometry": {
+        "type": "sphere",
+        "radius": 0.1
+      },
+      "material": {
+        "type": "basic",
+        "color": "#ff0000"
+      },
+      "parentId": "5026e906-b9c4-4d3f-947d-3357c463a618",
+      "components": {},
+      "name": "Sphere",
+      "order": 11.283691343060667
     }
   },
   "spaces": {
