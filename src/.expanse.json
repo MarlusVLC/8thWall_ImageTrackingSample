@@ -2430,7 +2430,18 @@
       "geometry": null,
       "material": null,
       "parentId": "5026e906-b9c4-4d3f-947d-3357c463a618",
-      "components": {},
+      "components": {
+        "69557f57-8aef-4363-94fd-0987b49389fe": {
+          "id": "69557f57-8aef-4363-94fd-0987b49389fe",
+          "name": "point-follower",
+          "parameters": {
+            "target": {
+              "type": "entity",
+              "id": "0bd7b199-657f-4131-8e61-abdac127c994"
+            }
+          }
+        }
+      },
       "gltfModel": {
         "src": {
           "type": "asset",
