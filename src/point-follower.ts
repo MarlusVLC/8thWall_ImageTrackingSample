@@ -24,7 +24,7 @@ const pointFollower = ecs.registerComponent({
 
         const ROTATION_EPSILON_DEGREES = 0.5;
 
-        const preparationState = defineState('preparation');
+        const preparationState = defineState('preparation').initial();
         const followingState = defineState('following');
         const returningState = defineState('returning');
 
