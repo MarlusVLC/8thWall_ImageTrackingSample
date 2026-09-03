@@ -1,9 +1,12 @@
 import * as ecs from '@8thwall/ecs';
 import * as transformHelper from './transform-Helper';
 
+const FORWARD_OFFSET_RAD = -Math.PI / 2; // offset de 90 graus para compensar a orientação do modelo (que aponta para o eixo X, enquanto a função lookAt assume que o objeto aponta para o eixo Z)
+
 const pointFollower = ecs.registerComponent({
     name: 'point-follower',
     schema: {
+        origin: ecs.eid,
         target: ecs.eid,
         translationSpeed: ecs.f32,
         targetRadius: ecs.f32,
@@ -18,9 +21,13 @@ const pointFollower = ecs.registerComponent({
     },
 
     stateMachine: ({world, eid, entity, schemaAttribute, defineState}) => {
-        let originPos: ecs.math.Vec3;
-        let currentTargetPos: ecs.math.Vec3;
+        // let originPos: ecs.math.Vec3;
+        let originLocalPos: ecs.math.Vec3;
+        // let currentTargetPos: ecs.math.Vec3;
+        let currentTarget: ecs.Entity;
         let currentStateID: string | { name: string; };
+
+        let tickCount = 0;
 
         const ROTATION_EPSILON_DEGREES = 0.5;
 
@@ -36,35 +43,32 @@ const pointFollower = ecs.registerComponent({
         const schema = schemaAttribute.get(eid);
         const target = world.getEntity(schema.target);
         const targetPosition = () => target.getWorldPosition();
+        
+        const pitchLock = entity.getWorldQuaternion().pitchYawRollDegrees().x;
+        const yawLock = entity.getWorldQuaternion().pitchYawRollDegrees().y;
+        const rollLock = entity.getWorldQuaternion().pitchYawRollDegrees().z;
 
-        // Rebuilds a quaternion from its pitch/yaw/roll (X/Y/Z) euler angles with
-        // roll (Z) forced to zero, so this rotation never carries any roll,
-        // no matter what the quat.lookAt / slerp produced.
-        const withoutRoll = (rotation: ecs.math.Quat): ecs.math.Quat => {
-            const euler = rotation.pitchYawRollDegrees()
-                .setZ(0);
-            return ecs.math.quat.pitchYawRollDegrees(euler);
-        };
+        console.log(`point-follower: initial pitchLock=${pitchLock}, yawLock=${yawLock}, rollLock=${rollLock}`);
+
+        const baseTilt = entity.getWorldQuaternion().clone();
 
         preparationState
             .onEnter(() => {
+                console.log('point-follower: preparationState.onEnter()');
                 switch (currentStateID) {
                     case followingState:
-                        currentTargetPos = originPos.clone();
+                        // currentTargetPos = transformHelper.resolveWorldPosition(entity, originLocalPos);
+                        currentTarget = world.getEntity(schema.origin);
                         break;
                     case returningState:
                     default:
-                        currentTargetPos = targetPosition();
+                        // currentTargetPos = targetPosition();
+                        currentTarget = world.getEntity(schema.target);
                 }
             })
             .onTick(() => {
-                // World up (not the entity's own, possibly tilted, up vector) keeps the
-                // look-at from leaning on entity's current pitch; withoutRoll()
-                // ensures the entity's up vector is always world up, so it doesn't lean.
-                const upVector = ecs.math.vec3.up();
-                const targetRotation = withoutRoll(
-                    ecs.math.quat.lookAt(entity.getWorldPosition(), currentTargetPos, upVector).setNormalize()
-                );
+                const currentTargetPos = currentTarget.getWorldPosition(); 
+                const targetRotation = transformHelper.computeHeadingRotation(entity.getWorldPosition(), currentTargetPos, FORWARD_OFFSET_RAD).times(baseTilt);
                 const currentRotation = entity.getWorldQuaternion();
                 const angleRemaining = currentRotation.degreesTo(targetRotation);
 
@@ -85,36 +89,60 @@ const pointFollower = ecs.registerComponent({
 
                 const maxDegreesthisTick = schema.rotationSpeed * (world.time.delta / 1000);
                 const t = Math.min(1, maxDegreesthisTick / angleRemaining);
-                entity.setWorldQuaternion(withoutRoll(currentRotation.slerp(targetRotation, t)));
+                const slerpedRotation = currentRotation.slerp(targetRotation, t);
+                entity.setWorldQuaternion(slerpedRotation);
+                tickCount++;
+                if (tickCount % 30 === 0) {
+                    console.log(`preparation tick = ${tickCount} - angleRemaining = ${angleRemaining}, maxDegreesthisTick = ${maxDegreesthisTick}, t = ${t}`);
+                }
+
             })
             .onTrigger(readyToFollow, followingState)
             .onTrigger(readyToReturn, returningState);
 
-            followingState
+        // let tickCount = 0;
+        followingState
             .onEnter(() => {
-                originPos = entity.getWorldPosition().clone();
+                console.log('point-follower: followingState.onEnter()');
+                // originPos = entity.getWorldPosition().clone();
+                // originLocalPos = entity.getLocalPosition().clone();
                 currentStateID = followingState;
             })
             .onTick(() => {
                 const targetPosition = target.getWorldPosition();
-                const direction = targetPosition.minus(entity.getWorldPosition()).setNormalize();
-                entity.translateWorld(direction.scale(schema.translationSpeed * (world.time.delta / 1000)));
-                entity.lookAt(target);
+                transformHelper.moveTowardsRuntime(world, entity, targetPosition, schema.translationSpeed);
+                // entity.lookAt(target); // DIAGNOSTICO TEMPORARIO: comentado para isolar a causa do drift
+                const headingRotation = transformHelper.computeHeadingRotation(entity.getWorldPosition(), targetPosition, FORWARD_OFFSET_RAD).times(baseTilt);
+                entity.setWorldQuaternion(headingRotation);
                 if (transformHelper.sqrDistance(entity.getWorldPosition(), targetPosition) <= schema.targetRadius * schema.targetRadius) {
                     targetReached.trigger();
+                }
+                tickCount++;
+                if (tickCount % 30 === 0) {
+                    console.log(`follow tick = ${tickCount} - entityPos=${entity.getWorldPosition().data()} targetPos=${targetPosition.data()} dist=${entity.getWorldPosition().distanceTo(targetPosition)}`);
                 }
             })
             .onTrigger(targetReached, preparationState);
 
-            returningState
+        returningState
             .onEnter(() => {
+                console.log('point-follower: returningState.onEnter()');
                 currentStateID = returningState;
             })
             .onTick(() => {
-                entity.lookAtWorld(originPos);
-                transformHelper.moveTowardsRuntime(world, entity, originPos, schema.translationSpeed);
-                if (transformHelper.sqrDistance(entity.getWorldPosition(), originPos) <= schema.originRadius * schema.originRadius) {
+                // entity.lookAtWorld(originPos);
+                // const originWorldPos = entity.getLocalPosition();
+                originLocalPos = currentTarget.getLocalPosition();
+                const originWorldPos = transformHelper.resolveWorldPosition(entity, originLocalPos);
+                const headingRotation = transformHelper.computeHeadingRotation(entity.getWorldPosition(), originWorldPos, FORWARD_OFFSET_RAD).times(baseTilt);
+                entity.setWorldQuaternion(headingRotation);
+                transformHelper.moveTowardsRuntime(world, entity, originWorldPos, schema.translationSpeed);
+                if (transformHelper.sqrDistance(entity.getWorldPosition(), originWorldPos) <= schema.originRadius * schema.originRadius) {
                     originReached.trigger();
+                }
+                tickCount++;
+                if (tickCount % 30 === 0) {
+                    console.log(`returning tick = ${tickCount} - entityPos=${entity.getWorldPosition().data()} originWorldPos=${originWorldPos.data()} dist=${entity.getWorldPosition().distanceTo(originWorldPos)}`);
                 }
             })
             .onTrigger(originReached, preparationState);

@@ -139,7 +139,7 @@
         "xr": {
           "desktop": "disabled",
           "xrCameraType": "world",
-          "headset": "AR",
+          "headset": "disabled",
           "phone": "AR",
           "world": {
             "disableWorldTracking": false
@@ -2385,8 +2385,8 @@
       "id": "5026e906-b9c4-4d3f-947d-3357c463a618",
       "position": [
         0,
-        1.00315567543762,
-        4.158362997149045
+        0,
+        0
       ],
       "rotation": [
         0,
@@ -2395,9 +2395,9 @@
         1
       ],
       "scale": [
-        5,
-        5,
-        5
+        1,
+        1,
+        1
       ],
       "geometry": null,
       "material": null,
@@ -2412,24 +2412,22 @@
     "52eb5ea6-dc47-436d-a664-6d8469f6d055": {
       "id": "52eb5ea6-dc47-436d-a664-6d8469f6d055",
       "position": [
-        -0.35008339827122514,
-        0.2763684094828267,
-        0.08392423911085789
+        0,
+        0,
+        0
       ],
       "rotation": [
-        0.5853170659261305,
-        0.24175207235291832,
-        0.26272358872678725,
-        0.7279671584454982
+        0.7071067811865475,
+        0,
+        0,
+        0.7071067811865476
       ],
       "scale": [
-        0.049999999999999996,
-        0.05000000000000001,
-        0.05
+        0.05,
+        0.0500000000000001,
+        0.05000000000000001
       ],
-      "geometry": null,
-      "material": null,
-      "parentId": "5026e906-b9c4-4d3f-947d-3357c463a618",
+      "parentId": "d3222063-c8d2-48c6-b893-04b0d86a05dc",
       "components": {
         "69557f57-8aef-4363-94fd-0987b49389fe": {
           "id": "69557f57-8aef-4363-94fd-0987b49389fe",
@@ -2438,6 +2436,14 @@
             "target": {
               "type": "entity",
               "id": "0bd7b199-657f-4131-8e61-abdac127c994"
+            },
+            "translationSpeed": 1,
+            "rotationSpeed": 120,
+            "targetRadius": 0.2,
+            "originRadius": 0.1,
+            "origin": {
+              "type": "entity",
+              "id": "d3222063-c8d2-48c6-b893-04b0d86a05dc"
             }
           }
         }
@@ -2445,24 +2451,20 @@
       "gltfModel": {
         "src": {
           "type": "asset",
-          "asset": "assets/random-props/1969_dodge_charger_rt_gt2psx_styleorient.glb"
+          "asset": "assets/random-props/mgs4_heliport.glb"
         },
         "animationClip": "",
         "loop": true
       },
-      "name": "1969_dodge_charger_rt_gt2psx_styleorient.glb",
-      "order": 10.081760892552133,
-      "shadow": {
-        "castShadow": true,
-        "receiveShadow": true
-      }
+      "name": "PointFollower",
+      "order": -0.7560872620197718
     },
     "0bd7b199-657f-4131-8e61-abdac127c994": {
       "id": "0bd7b199-657f-4131-8e61-abdac127c994",
       "position": [
-        0.4089416472748408,
-        -0.36234688500920254,
-        0.09091197124181738
+        0.3825262693949561,
+        -0.26559342053956225,
+        0.15949264687474063
       ],
       "rotation": [
         0,
@@ -2471,9 +2473,9 @@
         1
       ],
       "scale": [
-        1,
-        1,
-        1
+        0.5,
+        0.5,
+        0.5
       ],
       "geometry": {
         "type": "sphere",
@@ -2486,7 +2488,40 @@
       "parentId": "5026e906-b9c4-4d3f-947d-3357c463a618",
       "components": {},
       "name": "Sphere",
-      "order": 11.283691343060667
+      "order": -0.8360778955547203
+    },
+    "d3222063-c8d2-48c6-b893-04b0d86a05dc": {
+      "id": "d3222063-c8d2-48c6-b893-04b0d86a05dc",
+      "position": [
+        -0.31504688248416945,
+        0.343,
+        0.076
+      ],
+      "rotation": [
+        6.162975822039133e-33,
+        0,
+        0,
+        1
+      ],
+      "scale": [
+        0.5,
+        0.5,
+        0.49999999999999994
+      ],
+      "geometry": {
+        "type": "sphere",
+        "radius": 0.1
+      },
+      "material": {
+        "type": "basic",
+        "color": "#FFFFFF",
+        "blending": "normal",
+        "opacity": 0.1500000000000001
+      },
+      "parentId": "5026e906-b9c4-4d3f-947d-3357c463a618",
+      "components": {},
+      "name": "OriginSphere",
+      "order": -0.7931135643060101
     }
   },
   "spaces": {

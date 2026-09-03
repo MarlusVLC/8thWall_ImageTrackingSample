@@ -8,7 +8,12 @@ const touchMover = ecs.registerComponent({
     },
     schemaDefaults: {
         translationSpeed: 1,
-    }
+    },
+
+    // stateMachine: ({world, eid, entity, schemaAttribute, defineState}) => {
+    //     if (transformHelper.isInOrthoCameraView(world, eid) === false) return;
+
+    // }
 
 })
 
