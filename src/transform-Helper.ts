@@ -1,4 +1,5 @@
 import { type World, type Eid, type Entity, math } from "@8thwall/ecs";
+import { PerspectiveCamera } from 'three'
 
 // export function moveTowardsRuntime(world: World, entity: Entity, targetPos: math.Vec3, translationSpeed: number) {
 //     const entityPos = entity.getWorldPosition();
@@ -48,3 +49,43 @@ export function resolveWorldPosition(entity: Entity, localPos: math.Vec3): math.
     const parent = entity.getParent();
     return parent ? parent.getWorldTransform().timesVec(localPos) : localPos.clone();
 }
+
+export function lerp(a: number, b: number, t: number): number {
+    return a + (b - a) * t;
+}
+
+export function isInOrthoCameraView(world: World, targetEid: Eid): boolean{
+    const cameraEid = world.camera.getActiveEid();
+
+    // Posição e rotação da câmera ativa
+    const camPos = world.transform.getWorldPosition(cameraEid);
+    const camRotation = world.transform.getWorldQuaternion(cameraEid);
+
+    // Parâmetros de projeção (asssume câmera perspectiva)
+    const camObj = world.three.activeCamera as PerspectiveCamera
+
+    // Vetores locais da câmera (frente, direita, cima) já no espaço do mundo
+    const camRotMat = math.mat4.r(camRotation);
+    const camForward = camRotMat.timesVec(math.vec3.xyz(0,0,-1))
+    const camRight = camRotMat.timesVec(math.vec3.xyz(1,0,0))
+    const camUp = camRotMat.timesVec(math.vec3.xyz(0,1,0))
+
+    // Vetor câmera -> objeto
+    const targetPos = world.transform.getWorldPosition(targetEid);
+    const toTarget = targetPos.minus(camPos);
+
+    // Projeta em eixos locais da câmera
+    const depth = -toTarget.dot(camForward) // "Profunidade" (distância à frente da câmera)
+    const viewX = toTarget.dot(camRight) // Deslocamento horizontal
+    const viewY = toTarget.dot(camUp) // Deslocamento vertical
+
+    // Atrás da câmera ou muito (foar do near/far) -> fora de vista
+    if (depth < camObj.near || depth > camObj.far) return false;
+
+    // Meia-altura/meia-largura do frustum nessa profundidade
+    const halfHeight = depth * Math.tan((camObj.fov * Math.PI / 180) / 2);
+    const halfWidth = halfHeight * camObj.aspect;
+
+    return Math.abs(viewX) <= halfWidth && Math.abs(viewY) <= halfHeight;
+}
+

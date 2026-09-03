@@ -44,17 +44,17 @@ const pointFollower = ecs.registerComponent({
         const target = world.getEntity(schema.target);
         const targetPosition = () => target.getWorldPosition();
         
-        const pitchLock = entity.getWorldQuaternion().pitchYawRollDegrees().x;
-        const yawLock = entity.getWorldQuaternion().pitchYawRollDegrees().y;
-        const rollLock = entity.getWorldQuaternion().pitchYawRollDegrees().z;
+        // const pitchLock = entity.getWorldQuaternion().pitchYawRollDegrees().x;
+        // const yawLock = entity.getWorldQuaternion().pitchYawRollDegrees().y;
+        // const rollLock = entity.getWorldQuaternion().pitchYawRollDegrees().z;
 
-        console.log(`point-follower: initial pitchLock=${pitchLock}, yawLock=${yawLock}, rollLock=${rollLock}`);
+        // console.log(`point-follower: initial pitchLock=${pitchLock}, yawLock=${yawLock}, rollLock=${rollLock}`);
 
         const baseTilt = entity.getWorldQuaternion().clone();
 
         preparationState
             .onEnter(() => {
-                console.log('point-follower: preparationState.onEnter()');
+                // console.log('point-follower: preparationState.onEnter()');
                 switch (currentStateID) {
                     case followingState:
                         // currentTargetPos = transformHelper.resolveWorldPosition(entity, originLocalPos);
@@ -91,10 +91,10 @@ const pointFollower = ecs.registerComponent({
                 const t = Math.min(1, maxDegreesthisTick / angleRemaining);
                 const slerpedRotation = currentRotation.slerp(targetRotation, t);
                 entity.setWorldQuaternion(slerpedRotation);
-                tickCount++;
-                if (tickCount % 30 === 0) {
-                    console.log(`preparation tick = ${tickCount} - angleRemaining = ${angleRemaining}, maxDegreesthisTick = ${maxDegreesthisTick}, t = ${t}`);
-                }
+                // tickCount++;
+                // if (tickCount % 30 === 0) {
+                //     console.log(`preparation tick = ${tickCount} - angleRemaining = ${angleRemaining}, maxDegreesthisTick = ${maxDegreesthisTick}, t = ${t}`);
+                // }
 
             })
             .onTrigger(readyToFollow, followingState)
@@ -103,7 +103,7 @@ const pointFollower = ecs.registerComponent({
         // let tickCount = 0;
         followingState
             .onEnter(() => {
-                console.log('point-follower: followingState.onEnter()');
+                // console.log('point-follower: followingState.onEnter()');
                 // originPos = entity.getWorldPosition().clone();
                 // originLocalPos = entity.getLocalPosition().clone();
                 currentStateID = followingState;
@@ -117,16 +117,16 @@ const pointFollower = ecs.registerComponent({
                 if (transformHelper.sqrDistance(entity.getWorldPosition(), targetPosition) <= schema.targetRadius * schema.targetRadius) {
                     targetReached.trigger();
                 }
-                tickCount++;
-                if (tickCount % 30 === 0) {
-                    console.log(`follow tick = ${tickCount} - entityPos=${entity.getWorldPosition().data()} targetPos=${targetPosition.data()} dist=${entity.getWorldPosition().distanceTo(targetPosition)}`);
-                }
+                // tickCount++;
+                // if (tickCount % 30 === 0) {
+                //     console.log(`follow tick = ${tickCount} - entityPos=${entity.getWorldPosition().data()} targetPos=${targetPosition.data()} dist=${entity.getWorldPosition().distanceTo(targetPosition)}`);
+                // }
             })
             .onTrigger(targetReached, preparationState);
 
         returningState
             .onEnter(() => {
-                console.log('point-follower: returningState.onEnter()');
+                // console.log('point-follower: returningState.onEnter()');
                 currentStateID = returningState;
             })
             .onTick(() => {
@@ -140,10 +140,10 @@ const pointFollower = ecs.registerComponent({
                 if (transformHelper.sqrDistance(entity.getWorldPosition(), originWorldPos) <= schema.originRadius * schema.originRadius) {
                     originReached.trigger();
                 }
-                tickCount++;
-                if (tickCount % 30 === 0) {
-                    console.log(`returning tick = ${tickCount} - entityPos=${entity.getWorldPosition().data()} originWorldPos=${originWorldPos.data()} dist=${entity.getWorldPosition().distanceTo(originWorldPos)}`);
-                }
+                // tickCount++;
+                // if (tickCount % 30 === 0) {
+                //     console.log(`returning tick = ${tickCount} - entityPos=${entity.getWorldPosition().data()} originWorldPos=${originWorldPos.data()} dist=${entity.getWorldPosition().distanceTo(originWorldPos)}`);
+                // }
             })
             .onTrigger(originReached, preparationState);
     }

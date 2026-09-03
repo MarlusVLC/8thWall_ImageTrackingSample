@@ -2462,8 +2462,8 @@
     "0bd7b199-657f-4131-8e61-abdac127c994": {
       "id": "0bd7b199-657f-4131-8e61-abdac127c994",
       "position": [
-        0.3825262693949561,
-        -0.26559342053956225,
+        0.004748358773522143,
+        0.15955535073487043,
         0.15949264687474063
       ],
       "rotation": [
@@ -2486,8 +2486,16 @@
         "color": "#ff0000"
       },
       "parentId": "5026e906-b9c4-4d3f-947d-3357c463a618",
-      "components": {},
-      "name": "Sphere",
+      "components": {
+        "ca867e49-8110-4325-99fc-476ed3ab8528": {
+          "id": "ca867e49-8110-4325-99fc-476ed3ab8528",
+          "name": "touch-mover",
+          "parameters": {
+            "translationSpeed": 100
+          }
+        }
+      },
+      "name": "TouchMovingSphere",
       "order": -0.8360778955547203
     },
     "d3222063-c8d2-48c6-b893-04b0d86a05dc": {
