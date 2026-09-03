@@ -41,7 +41,7 @@ const SPIN_AXIS = math.vec3.xyz(0, 0, 1); // eixo mundial em torno do qual o obj
 
 export function computeHeadingRotation(fromPos: math.Vec3, toPos: math.Vec3, rotationOffsetRad: number): math.Quat {
     const dir = toPos.minus(fromPos);
-    const angleRad = Math.atan2(dir.x, dir.y) + rotationOffsetRad; // plano perpendicular ao SPIN_AXIS (aqui, XY) - ajustar eixos/sinal se girar ao contrário do esperado
+    const angleRad = -Math.atan2(dir.x, dir.y) + rotationOffsetRad; // plano perpendicular ao SPIN_AXIS (aqui, XY) - ajustar eixos/sinal se girar ao contrário do esperado
     return math.quat.axisAngle(SPIN_AXIS.clone().scale(angleRad));
 }
 

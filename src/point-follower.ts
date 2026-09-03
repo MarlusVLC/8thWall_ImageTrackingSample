@@ -1,7 +1,7 @@
 import * as ecs from '@8thwall/ecs';
 import * as transformHelper from './transform-Helper';
 
-const FORWARD_OFFSET_RAD = -Math.PI / 2; // offset de 90 graus para compensar a orientação do modelo (que aponta para o eixo X, enquanto a função lookAt assume que o objeto aponta para o eixo Z)
+const FORWARD_OFFSET_RAD = Math.PI; // offset de 90 graus para compensar a orientação do modelo (que aponta para o eixo X, enquanto a função lookAt assume que o objeto aponta para o eixo Z)
 
 const pointFollower = ecs.registerComponent({
     name: 'point-follower',

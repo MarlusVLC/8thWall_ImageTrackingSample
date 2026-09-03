@@ -2491,7 +2491,7 @@
           "id": "ca867e49-8110-4325-99fc-476ed3ab8528",
           "name": "touch-mover",
           "parameters": {
-            "translationSpeed": 50
+            "translationSpeed": 25
           }
         }
       },
