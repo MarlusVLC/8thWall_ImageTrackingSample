@@ -10,11 +10,11 @@ ecs.registerComponent({
     add: (world, component) => {
         const realityReadyHandler = createRealityReadyHandler();
 
-        world.events.addListener(world.events.globalId, ecs.events.REALITY_READY, realityReadyHandler);
-        const cleanup = () => {
-            world.events.removeListener(world.events.globalId, ecs.events.REALITY_READY, realityReadyHandler);
-        };
-        addCleanup(component, cleanup);
+        // world.events.addListener(world.events.globalId, ecs.events.REALITY_READY, realityReadyHandler);
+        // const cleanup = () => {
+        //     world.events.removeListener(world.events.globalId, ecs.events.REALITY_READY, realityReadyHandler);
+        // };
+        // addCleanup(component, cleanup);
     },
     remove: (world, component) => {
         doCleanup(component);

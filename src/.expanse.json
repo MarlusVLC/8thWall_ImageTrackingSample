@@ -2557,6 +2557,11 @@
           "id": "2813450d-29f9-40b6-a6ac-cea2dadb419d",
           "name": "Augmented Reality Checker",
           "parameters": {}
+        },
+        "755dad38-2889-4533-b1e0-ba0995499f92": {
+          "id": "755dad38-2889-4533-b1e0-ba0995499f92",
+          "name": "Image Tracking Checker",
+          "parameters": {}
         }
       },
       "name": "GeneralTester",
