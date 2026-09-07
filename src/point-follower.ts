@@ -54,7 +54,7 @@ const pointFollower = ecs.registerComponent({
 
         preparationState
             .onEnter(() => {
-                // console.log('point-follower: preparationState.onEnter()');
+                console.log('point-follower: preparationState.onEnter()');
                 switch (currentStateID) {
                     case followingState:
                         // currentTargetPos = transformHelper.resolveWorldPosition(entity, originLocalPos);
@@ -103,7 +103,7 @@ const pointFollower = ecs.registerComponent({
         // let tickCount = 0;
         followingState
             .onEnter(() => {
-                // console.log('point-follower: followingState.onEnter()');
+                console.log('point-follower: followingState.onEnter()');
                 // originPos = entity.getWorldPosition().clone();
                 // originLocalPos = entity.getLocalPosition().clone();
                 currentStateID = followingState;
@@ -126,7 +126,7 @@ const pointFollower = ecs.registerComponent({
 
         returningState
             .onEnter(() => {
-                // console.log('point-follower: returningState.onEnter()');
+                console.log('point-follower: returningState.onEnter()');
                 currentStateID = returningState;
             })
             .onTick(() => {
