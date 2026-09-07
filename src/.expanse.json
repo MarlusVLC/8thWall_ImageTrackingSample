@@ -2566,6 +2566,39 @@
       },
       "name": "GeneralTester",
       "order": 12.336190233214776
+    },
+    "7955270a-321c-4c20-8c62-197a78a09af6": {
+      "id": "7955270a-321c-4c20-8c62-197a78a09af6",
+      "position": [
+        0,
+        3.5142041762951655,
+        -3.4281890766965337
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "geometry": {
+        "type": "box",
+        "depth": 1,
+        "height": 1,
+        "width": 1
+      },
+      "material": {
+        "type": "basic",
+        "color": "#FFFFFF"
+      },
+      "parentId": "88453035-dc0f-486d-868a-8ff7c2fda864",
+      "components": {},
+      "name": "DigitalReality Box",
+      "order": 13.63130122456249
     }
   },
   "spaces": {
