@@ -10,7 +10,20 @@
     "originalHeight": 1024
   },
   "imagePath": "image-targets/Marker-01_luminance.png",
-  "metadata": null,
+  "metadata": {
+    "name": "Jane Doe",
+    "age": 28,
+    "isStudent": false,
+    "courses": [
+      "Math",
+      "Physics"
+    ],
+    "address": {
+      "city": "New York",
+      "zipCode": "10001"
+    },
+    "phone": null
+  },
   "name": "Marker-01",
   "resources": {
     "originalImage": "Marker-01_original.png",
@@ -19,5 +32,5 @@
     "luminanceImage": "Marker-01_luminance.png"
   },
   "created": 1788210000876,
-  "updated": 1788210000876
+  "updated": 1788873762930
 }

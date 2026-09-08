@@ -9,6 +9,7 @@ declare global {
 
     interface ImageTargetEventData {
         name: string;
+        metadata: any;
         type: 'FLAT' | 'CYLINDRICAL' | 'CONICAL';
         position: {x: number, y: number, z: number};
         rotation: {w: number, x: number, y: number, z: number};
@@ -23,8 +24,20 @@ declare global {
         arcLengthRadians?: number;
     }
 
+    interface ImageLoadingEventData {
+        name: string;
+        type: string;
+        metadata: any;
+        properties: ImagePropertiesObject;
+    }
+
+    interface ImageLoadingEventDataCollection {
+        imageTargets: Array<ImageLoadingEventData>
+    }
+
     interface EcsEventTypes{
         "reality.imagefound": ImageTargetEventData;
+        "reality.imageloading": ImageLoadingEventDataCollection;
     }
 }
 
