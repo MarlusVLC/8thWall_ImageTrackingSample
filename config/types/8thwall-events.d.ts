@@ -5,6 +5,9 @@ declare global {
         originalWidth: number;
         originalHeight: number;
         isRotated: boolean;
+        left: number;
+        top: number;
+        moveable: boolean;
     }
 
     interface ImageTargetEventData {
@@ -35,9 +38,24 @@ declare global {
         imageTargets: Array<ImageLoadingEventData>
     }
 
+    interface ImageScanningEventData {
+        name: string;
+        type: string;
+        metadata: any;
+        geometry: any;
+        properties: ImagePropertiesObject;
+    }
+
+    interface ImageScanningEventDataCollection {
+        imageTargets: Array<ImageScanningEventData>
+    }
+
     interface EcsEventTypes{
         "reality.imagefound": ImageTargetEventData;
+        "reality.imagelost": ImageTargetEventData;
+        "reality.imageupdated": ImageTargetEventData;
         "reality.imageloading": ImageLoadingEventDataCollection;
+        "reality.imagescanning": ImageScanningEventDataCollection;
     }
 }
 
