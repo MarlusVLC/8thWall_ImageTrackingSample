@@ -1,10 +1,8 @@
 import * as ecs from '@8thwall/ecs'
-import { addManagedListener } from '../event-cleaner';
-
 
 // ecs.events.REALITY_IMAGE_FOUND
 // ecs.events.REALITY_IMAGE_LOST
-// ecs.events.REALITY_IMAGE_UPDATED
+// ecs.events.REALITY_IMAGE_UPDATED -> Executado continuamente - Tomar cuidado com o que roda aqui
 const createRealityImageDetectionHandler = (detectionStatus: 'FOUND' | 'LOST' | 'UPDATED' ) => (e: {data: ImageTargetEventData}) => {
     console.log(`reality image ${detectionStatus} = `, e);
     // const data = e.data;
@@ -27,26 +25,17 @@ const createRealityImageDetectionHandler = (detectionStatus: 'FOUND' | 'LOST' | 
 } 
 
 // ecs.events.REALITY_IMAGE_LOADING
-const createRealityImageLoadingHandler = () => (e: {data: ImageLoadingEventDataCollection}) => {
-    console.log('reality images LOADING = ', e);
+// ecs.events.REALITY_IMAGE_SCANNING
+const createRealityImagePreProcessingHandler = (processingStatus: 'LOADING' | 'SCANNING') => (e: {data: ImageTargetEventDataCollection}) => {
+    console.log(`reality images ${processingStatus} = `, e);
     // const images = e.data.imageTargets;
     // images.forEach(img => {
-    //     console.log('LOADING image data = ', JSON.stringify(img));
-    //     console.log(`LOADING image name = ${img.name} | type: ${img.type} | Metadata: ${JSON.stringify(img.metadata)}`)    ;
-    //     console.log('LOADING img properties = ', img.properties)
+    //     console.log(`${processingStatus} image data = `, JSON.stringify(img));
+    //     console.log(`${processingStatus} image name = ${img.name} | type: ${img.type} | Metadata: ${JSON.stringify(img.metadata)}`)    ;
+    //     console.log('${processingStatus} img properties = ', img.properties)
     // });
 }
 
-// ecs.events.REALITY_IMAGE_SCANNING
-const createRealityImageScanningHandler = () => (e: {data: ImageScanningEventDataCollection}) => {
-    console.log('reality images being SCANNED = ', e);
-//     const images = e.data.imageTargets;
-//     images.forEach(img => {
-//         console.log('SCANNED image data = ', JSON.stringify(img));
-//         console.log(`SCANNED image name = ${img.name} | type: ${img.type} | Metadata: ${JSON.stringify(img.metadata)}`)    ;
-//         console.log('SCANNED img properties = ', img.properties)
-//     });
-}
 
 const imageTrackingChecker = ecs.registerComponent({
     name: 'Image Tracking Checker',
@@ -59,13 +48,13 @@ const imageTrackingChecker = ecs.registerComponent({
         const handleRealityImageLost = createRealityImageDetectionHandler('LOST');
         preAugmentationState.listen(world.events.globalId, ecs.events.REALITY_IMAGE_LOST, handleRealityImageLost)
 
-        const handleRealityImageUpdated = createRealityImageDetectionHandler('UPDATED');
-        preAugmentationState.listen(world.events.globalId, ecs.events.REALITY_IMAGE_UPDATED, handleRealityImageUpdated)
+        // const handleRealityImageUpdated = createRealityImageDetectionHandler('UPDATED');
+        // preAugmentationState.listen(world.events.globalId, ecs.events.REALITY_IMAGE_UPDATED, handleRealityImageUpdated)
         
-        const handleRealityImagesLoading = createRealityImageLoadingHandler();
+        const handleRealityImagesLoading = createRealityImagePreProcessingHandler("LOADING");
         preAugmentationState.listen(world.events.globalId, ecs.events.REALITY_IMAGE_LOADING, handleRealityImagesLoading)
 
-        const handleRealityImagesScanning = createRealityImageScanningHandler();
+        const handleRealityImagesScanning = createRealityImagePreProcessingHandler("SCANNING");
         preAugmentationState.listen(world.events.globalId, ecs.events.REALITY_IMAGE_SCANNING, handleRealityImagesScanning);
     }
 })

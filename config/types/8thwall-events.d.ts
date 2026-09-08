@@ -27,35 +27,36 @@ declare global {
         arcLengthRadians?: number;
     }
 
-    interface ImageLoadingEventData {
+    interface ImageTargetEventDataUnit {
         name: string;
-        type: string;
         metadata: any;
-        properties: ImagePropertiesObject;
-    }
-
-    interface ImageLoadingEventDataCollection {
-        imageTargets: Array<ImageLoadingEventData>
-    }
-
-    interface ImageScanningEventData {
-        name: string;
-        type: string;
-        metadata: any;
+        type: 'FLAT' | 'CYLINDRICAL' | 'CONICAL';
         geometry: any;
         properties: ImagePropertiesObject;
     }
 
-    interface ImageScanningEventDataCollection {
-        imageTargets: Array<ImageScanningEventData>
+    interface ImageTargetEventDataCollection {
+        imageTargets: Array<ImageLoadingEventDataUnit>
     }
+
+    // interface ImageScanningEventData {
+    //     name: string;
+    //     type: string;
+    //     metadata: any;
+    //     geometry: any;
+    //     properties: ImagePropertiesObject;
+    // }
+
+    // interface ImageScanningEventDataCollection {
+    //     imageTargets: Array<ImageScanningEventData>
+    // }
 
     interface EcsEventTypes{
         "reality.imagefound": ImageTargetEventData;
         "reality.imagelost": ImageTargetEventData;
         "reality.imageupdated": ImageTargetEventData;
-        "reality.imageloading": ImageLoadingEventDataCollection;
-        "reality.imagescanning": ImageScanningEventDataCollection;
+        "reality.imageloading": ImageTargetEventDataCollection;
+        "reality.imagescanning": ImageTargetEventDataCollection;
     }
 }
 
