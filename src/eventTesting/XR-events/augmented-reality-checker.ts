@@ -1,5 +1,5 @@
 import * as ecs from '@8thwall/ecs'
-import { addCleanup, doCleanup } from './event-cleaner'
+import { addCleanup, doCleanup } from '../event-cleaner'
 
 const createRealityReadyHandler = () => (e) => {
     console.log("REALITY READY -> ", e)

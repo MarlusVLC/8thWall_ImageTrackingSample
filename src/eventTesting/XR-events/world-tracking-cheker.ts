@@ -1,10 +1,12 @@
 import * as ecs from '@8thwall/ecs'
 
 const createWorldTrackingStatusHandler = () => (e: {data: RealityTargetEventData}) => {
-    const data = e.data;
-    console.log(`World tracking status data = ${JSON.stringify(data)} `);
-    console.log(`TRACKING STATUS changed -> REASON ${data.reason} | STATUS = ${data.status}`);
+    console.log(`World tracking status data = ${JSON.stringify(e.data)} `);
 }
+
+// const createLocationScanningHandler = () => (e: {data: any}) => {
+//     console.log(`Location Scanning data = ${JSON.stringify(e.data)} `);
+// }
 
 const worldTrackingChecker = ecs.registerComponent({
     name: 'World Tracking Checker',
@@ -13,6 +15,31 @@ const worldTrackingChecker = ecs.registerComponent({
 
         const handleWorldTrackingStatus = createWorldTrackingStatusHandler();
         augmentationState.listen(world.events.globalId, ecs.events.REALITY_TRACKING_STATUS, handleWorldTrackingStatus);
+
+        // const handleLocationScanning = createLocationScanningHandler();
+        augmentationState.listen(world.events.globalId, ecs.events.REALITY_LOCATION_SCANNING, (e) => {
+            console.log(`Location Scanning data = ${JSON.stringify(e.data)}`)
+        })
+
+        augmentationState.listen(world.events.globalId, ecs.events.REALITY_LOCATION_FOUND, (e) => {
+            console.log(`Location Found data = ${JSON.stringify(e.data)}`)
+        })
+
+        // augmentationState.listen(world.events.globalId, ecs.events.REALITY_LOCATION_UPDATED, (e) => {
+        //     console.log(`Location Updated data = ${JSON.stringify(e.data)}`)
+        // })
+
+        augmentationState.listen(world.events.globalId, ecs.events.REALITY_LOCATION_LOST, (e) => {
+            console.log(`Location Lost data = ${JSON.stringify(e.data)}`)
+        })
+
+        augmentationState.listen(world.events.globalId, ecs.events.REALITY_MESH_FOUND, (e) => {
+            console.log(`Mesh Found data = ${JSON.stringify(e.data)}`)
+        })
+
+        augmentationState.listen(world.events.globalId, ecs.events.REALITY_MESH_LOST, (e) => {
+            console.log(`Location Lost data = ${JSON.stringify(e.data)}`)
+        })
     }
 })
 

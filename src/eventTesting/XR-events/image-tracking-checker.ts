@@ -4,7 +4,7 @@ import * as ecs from '@8thwall/ecs'
 // ecs.events.REALITY_IMAGE_LOST
 // ecs.events.REALITY_IMAGE_UPDATED -> Executado continuamente - Tomar cuidado com o que roda aqui
 const createRealityImageDetectionHandler = (detectionStatus: 'FOUND' | 'LOST' | 'UPDATED' ) => (e: {data: ImageTargetEventData}) => {
-    console.log(`reality image ${detectionStatus} = `, e);
+    console.log(`reality image ${detectionStatus} = `, e.data);
     // const data = e.data;
     // const metadata = JSON.stringify(e.data.metadata);
     // console.log(`${detectionStatus} image METADATA = ${metadata}`)

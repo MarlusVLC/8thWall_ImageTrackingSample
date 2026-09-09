@@ -142,7 +142,7 @@
           "headset": "disabled",
           "phone": "AR",
           "world": {
-            "disableWorldTracking": false
+            "disableWorldTracking": true
           }
         }
       },
@@ -1954,14 +1954,14 @@
       "material": null,
       "parentId": "88453035-dc0f-486d-868a-8ff7c2fda864",
       "components": {
-        "2813450d-29f9-40b6-a6ac-cea2dadb419d": {
-          "id": "2813450d-29f9-40b6-a6ac-cea2dadb419d",
-          "name": "Augmented Reality Checker",
-          "parameters": {}
-        },
         "755dad38-2889-4533-b1e0-ba0995499f92": {
           "id": "755dad38-2889-4533-b1e0-ba0995499f92",
           "name": "Image Tracking Checker",
+          "parameters": {}
+        },
+        "c72497cc-963f-46d5-91f7-2742e393aa2e": {
+          "id": "c72497cc-963f-46d5-91f7-2742e393aa2e",
+          "name": "World Tracking Checker",
           "parameters": {}
         }
       },
@@ -1997,9 +1997,54 @@
         "color": "#FFFFFF"
       },
       "parentId": "88453035-dc0f-486d-868a-8ff7c2fda864",
-      "components": {},
+      "components": {
+        "6607e0ab-9437-4ae7-a093-90c0b64dfbe7": {
+          "id": "6607e0ab-9437-4ae7-a093-90c0b64dfbe7",
+          "name": "touch-mover",
+          "parameters": {
+            "translationSpeed": 5
+          }
+        }
+      },
       "name": "Targetless Box",
-      "order": 13.63130122456249
+      "order": 13.63130122456249,
+      "disabled": true
+    },
+    "87c2b320-6fed-4a38-b438-0a434dc37a5b": {
+      "id": "87c2b320-6fed-4a38-b438-0a434dc37a5b",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "geometry": null,
+      "material": null,
+      "parentId": "88453035-dc0f-486d-868a-8ff7c2fda864",
+      "components": {
+        "755dad38-2889-4533-b1e0-ba0995499f92": {
+          "id": "755dad38-2889-4533-b1e0-ba0995499f92",
+          "name": "Image Tracking Checker",
+          "parameters": {}
+        },
+        "c72497cc-963f-46d5-91f7-2742e393aa2e": {
+          "id": "c72497cc-963f-46d5-91f7-2742e393aa2e",
+          "name": "World Tracking Checker",
+          "parameters": {}
+        }
+      },
+      "name": "GeneralTester (1)",
+      "order": 12.80728301580581
     }
   },
   "spaces": {
