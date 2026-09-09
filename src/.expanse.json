@@ -773,7 +773,8 @@
           "desktop": "3D",
           "headset": "AR",
           "world": {
-            "disableWorldTracking": true
+            "disableWorldTracking": true,
+            "scale": "absolute"
           }
         }
       },
