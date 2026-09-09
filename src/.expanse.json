@@ -1521,7 +1521,18 @@
       "geometry": null,
       "material": null,
       "parentId": "585f02ca-0418-46b7-8317-8926be71e007",
-      "components": {},
+      "components": {
+        "b1c27df1-4f1b-4268-9c03-16ea4fccd2a7": {
+          "id": "b1c27df1-4f1b-4268-9c03-16ea4fccd2a7",
+          "name": "Augmented Reality Checker",
+          "parameters": {}
+        },
+        "9c3a9155-9cd2-4551-8165-1706a914485d": {
+          "id": "9c3a9155-9cd2-4551-8165-1706a914485d",
+          "name": "World Tracking Checker",
+          "parameters": {}
+        }
+      },
       "name": "World Content",
       "order": 3.513191113816268
     },

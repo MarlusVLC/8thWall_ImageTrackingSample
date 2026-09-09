@@ -39,17 +39,10 @@ declare global {
         imageTargets: Array<ImageLoadingEventDataUnit>
     }
 
-    // interface ImageScanningEventData {
-    //     name: string;
-    //     type: string;
-    //     metadata: any;
-    //     geometry: any;
-    //     properties: ImagePropertiesObject;
-    // }
-
-    // interface ImageScanningEventDataCollection {
-    //     imageTargets: Array<ImageScanningEventData>
-    // }
+    interface RealityTargetEventData {
+        status: 'LIMITED' | 'NORMAL';
+        reason: 'INITIALIZING' | 'UNDEFINED';
+    }
 
     interface EcsEventTypes{
         "reality.imagefound": ImageTargetEventData;
@@ -57,6 +50,7 @@ declare global {
         "reality.imageupdated": ImageTargetEventData;
         "reality.imageloading": ImageTargetEventDataCollection;
         "reality.imagescanning": ImageTargetEventDataCollection;
+        "reality.trackingstatus": RealityTargetEventData;
     }
 }
 
