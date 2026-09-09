@@ -40,8 +40,8 @@ declare global {
     }
 
     interface RealityTargetEventData {
-        status: 'LIMITED' | 'NORMAL';
-        reason: 'INITIALIZING' | 'UNDEFINED';
+        status: string;
+        reason: string;
     }
 
     interface EcsEventTypes{
