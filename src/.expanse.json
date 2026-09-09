@@ -773,7 +773,7 @@
           "desktop": "3D",
           "headset": "AR",
           "world": {
-            "disableWorldTracking": true,
+            "disableWorldTracking": false,
             "scale": "absolute"
           }
         }
@@ -818,7 +818,8 @@
       "imageTarget": {
         "name": "toggle-slam"
       },
-      "order": 3.8421274092108453
+      "order": 3.8421274092108453,
+      "disabled": true
     },
     "91576797-b198-4057-89f6-e37f24fbb359": {
       "id": "91576797-b198-4057-89f6-e37f24fbb359",
@@ -1155,7 +1156,8 @@
         "textAlign": "left",
         "verticalTextAlign": "center"
       },
-      "order": 2
+      "order": 2,
+      "hidden": true
     },
     "a1e3cd1d-c9d5-48c0-88ad-7ab0c1ef4291": {
       "id": "a1e3cd1d-c9d5-48c0-88ad-7ab0c1ef4291",
