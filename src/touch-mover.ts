@@ -1,5 +1,27 @@
 import * as ecs from '@8thwall/ecs';
 import * as transformHelper from './transform-Helper';
+import { z } from "zod";
+import { addCleanup, doCleanup } from './eventTesting/event-cleaner';
+
+const ScaleDataSchema = z.object({
+    scaleFactor: z.number().default(1),
+    shouldScaleTranslationSpeed: z.boolean().default(false)
+});
+
+const createScalingHandler = (schemaAttribute, eid: ecs.Eid) => (e: {data: unknown}) => {
+    const payloadData = ScaleDataSchema.safeParse(e.data);
+    if (!payloadData.success){
+        console.log(`Schema com dados incorretos = `, payloadData.error)
+        return;
+    };
+
+    const data = payloadData.data;
+    const schemaCursor = schemaAttribute.get(eid);
+
+    console.log("Scaling TouchMover with the following scale = ", data.scaleFactor);
+
+    if (data.shouldScaleTranslationSpeed) schemaCursor.translationSpeed *= data.scaleFactor;
+}
 
 const touchMover = ecs.registerComponent({
     name: 'touch-mover',
@@ -9,7 +31,17 @@ const touchMover = ecs.registerComponent({
     schemaDefaults: {
         translationSpeed: 1,
     },
+    add: (world, component) => {
+        const scalingHandler = createScalingHandler(component.schemaAttribute, component.eid);
+        world.events.addListener(world.events.globalId, 'scaled', scalingHandler);
 
+        addCleanup(component, () => {
+            world.events.removeListener(world.events.globalId, 'scaled', scalingHandler);
+        });
+    },
+    remove: (world, component) => {
+        doCleanup(component);
+    },
     stateMachine: ({world, eid, entity, schemaAttribute, defineState}) => {
         const movingState = defineState('moving').initial()
 
@@ -49,12 +81,10 @@ const touchMover = ecs.registerComponent({
             dist = previousPos.distanceTo(currentPos);
             camPos = world.getEntity(cameraEid).getWorldPosition();
 
-
-            
             // console.log('LERPED INPUT = ', screenInput)
             // console.log('MOVE VECTOR = ', moveVector)
             // console.log(`SCREEN input = ${screenInput.x}, ${screenInput.y} | LERPED input = ${lerpedInput.x}, ${lerpedInput.y}  | MOVE vector = ${moveVector.data()}`)
-            // console.log(`Touch Mover: PREVIOUS pos = ${previousPos.data()} | CURRENT pos = ${currentPos.data()} | DIST = ${dist}`)
+            console.log(`Touch Mover: PREVIOUS pos = ${previousPos.data()} | CURRENT pos = ${currentPos.data()} | DIST = ${dist}`)
             // console.log(`cam POS = ${camPos.data()} | cam ROT = ${camRotation.data()}`)
         }
 
@@ -63,4 +93,4 @@ const touchMover = ecs.registerComponent({
 
 })
 
-export { touchMover }
+export { touchMover, ScaleDataSchema }

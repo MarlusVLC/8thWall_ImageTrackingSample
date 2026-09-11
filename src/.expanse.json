@@ -1806,7 +1806,46 @@
       "geometry": null,
       "material": null,
       "parentId": "88453035-dc0f-486d-868a-8ff7c2fda864",
-      "components": {},
+      "components": {
+        "0e7c2dda-4a05-4a0e-89ef-d540d108c387": {
+          "id": "0e7c2dda-4a05-4a0e-89ef-d540d108c387",
+          "name": "Marker Modulator",
+          "parameters": {
+            "imageTargetEntity": {
+              "type": "entity",
+              "id": "5026e906-b9c4-4d3f-947d-3357c463a618"
+            },
+            "modulableParent": {
+              "type": "entity",
+              "id": "4f593f5a-d913-4628-96a0-3ee657a2282a"
+            }
+          }
+        },
+        "40ba2223-b5d5-4002-92e9-02d33e210e24": {
+          "id": "40ba2223-b5d5-4002-92e9-02d33e210e24",
+          "name": "Marker Movement Manager",
+          "parameters": {
+            "relativeFollowSpeedMode": "FOUND",
+            "objectsParent": {
+              "type": "entity",
+              "id": "4f593f5a-d913-4628-96a0-3ee657a2282a"
+            },
+            "follower": {
+              "type": "entity",
+              "id": "52eb5ea6-dc47-436d-a664-6d8469f6d055"
+            },
+            "touchMover": {
+              "type": "entity",
+              "id": "0bd7b199-657f-4131-8e61-abdac127c994"
+            },
+            "relativeTargetRadiusMode": "FOUND",
+            "relativeOriginRadiusMode": "FOUND",
+            "relativeRotationSpeedMode": "ABSOLUTE",
+            "relativeTouchMovementSpeedMode": "FOUND",
+            "relativeParentScaleMode": "UPDATED"
+          }
+        }
+      },
       "name": "Target_Marker-01",
       "imageTarget": {
         "name": "Marker-01"
@@ -1833,22 +1872,29 @@
       ],
       "parentId": "d3222063-c8d2-48c6-b893-04b0d86a05dc",
       "components": {
-        "69557f57-8aef-4363-94fd-0987b49389fe": {
-          "id": "69557f57-8aef-4363-94fd-0987b49389fe",
-          "name": "point-follower",
+        "12d7dc77-b98d-46e6-bffe-fa34278a76ff": {
+          "id": "12d7dc77-b98d-46e6-bffe-fa34278a76ff",
+          "name": "Local Space Point Follower",
           "parameters": {
+            "origin": {
+              "type": "entity",
+              "id": "d3222063-c8d2-48c6-b893-04b0d86a05dc"
+            },
             "target": {
               "type": "entity",
               "id": "0bd7b199-657f-4131-8e61-abdac127c994"
             },
             "translationSpeed": 1,
-            "rotationSpeed": 120,
             "targetRadius": 0.2,
             "originRadius": 0.1,
-            "origin": {
-              "type": "entity",
-              "id": "d3222063-c8d2-48c6-b893-04b0d86a05dc"
-            }
+            "rotationSpeed": 120
+          }
+        },
+        "a713eb45-cb01-4ab2-9fe2-af56ab95ed00": {
+          "id": "a713eb45-cb01-4ab2-9fe2-af56ab95ed00",
+          "name": "Entity Debugger",
+          "parameters": {
+            "name": "Point Follower"
           }
         }
       },
@@ -1861,7 +1907,11 @@
         "loop": true
       },
       "name": "PointFollower",
-      "order": -0.7560872620197718
+      "order": -0.7560872620197718,
+      "shadow": {
+        "castShadow": true,
+        "receiveShadow": true
+      }
     },
     "0bd7b199-657f-4131-8e61-abdac127c994": {
       "id": "0bd7b199-657f-4131-8e61-abdac127c994",
@@ -1889,13 +1939,20 @@
         "type": "basic",
         "color": "#ff0000"
       },
-      "parentId": "5026e906-b9c4-4d3f-947d-3357c463a618",
+      "parentId": "4f593f5a-d913-4628-96a0-3ee657a2282a",
       "components": {
         "ca867e49-8110-4325-99fc-476ed3ab8528": {
           "id": "ca867e49-8110-4325-99fc-476ed3ab8528",
           "name": "touch-mover",
           "parameters": {
             "translationSpeed": 25
+          }
+        },
+        "08c4fff5-90c5-4bd1-9be6-61629ea761d3": {
+          "id": "08c4fff5-90c5-4bd1-9be6-61629ea761d3",
+          "name": "Entity Debugger",
+          "parameters": {
+            "name": "Touch Moving Sphere"
           }
         }
       },
@@ -1930,46 +1987,18 @@
         "blending": "normal",
         "opacity": 0.1500000000000001
       },
-      "parentId": "5026e906-b9c4-4d3f-947d-3357c463a618",
-      "components": {},
-      "name": "OriginSphere",
-      "order": -0.7931135643060101
-    },
-    "b702ba04-e9a5-412a-b3af-ce8f6753618b": {
-      "id": "b702ba04-e9a5-412a-b3af-ce8f6753618b",
-      "position": [
-        0,
-        0,
-        0
-      ],
-      "rotation": [
-        0,
-        0,
-        0,
-        1
-      ],
-      "scale": [
-        1,
-        1,
-        1
-      ],
-      "geometry": null,
-      "material": null,
-      "parentId": "88453035-dc0f-486d-868a-8ff7c2fda864",
+      "parentId": "4f593f5a-d913-4628-96a0-3ee657a2282a",
       "components": {
-        "755dad38-2889-4533-b1e0-ba0995499f92": {
-          "id": "755dad38-2889-4533-b1e0-ba0995499f92",
-          "name": "Image Tracking Checker",
-          "parameters": {}
-        },
-        "c72497cc-963f-46d5-91f7-2742e393aa2e": {
-          "id": "c72497cc-963f-46d5-91f7-2742e393aa2e",
-          "name": "World Tracking Checker",
-          "parameters": {}
+        "6a9f60c7-5660-4abc-a16a-6b570f3b0970": {
+          "id": "6a9f60c7-5660-4abc-a16a-6b570f3b0970",
+          "name": "Entity Debugger",
+          "parameters": {
+            "name": "OriginSphere"
+          }
         }
       },
-      "name": "GeneralTester",
-      "order": 12.336190233214776
+      "name": "OriginSphere",
+      "order": -0.7931135643060101
     },
     "7955270a-321c-4c20-8c62-197a78a09af6": {
       "id": "7955270a-321c-4c20-8c62-197a78a09af6",
@@ -2046,8 +2075,41 @@
           "parameters": {}
         }
       },
-      "name": "GeneralTester (1)",
+      "name": "Augmented Reality Tester",
       "order": 12.80728301580581
+    },
+    "4f593f5a-d913-4628-96a0-3ee657a2282a": {
+      "id": "4f593f5a-d913-4628-96a0-3ee657a2282a",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "geometry": null,
+      "material": null,
+      "parentId": "5026e906-b9c4-4d3f-947d-3357c463a618",
+      "components": {
+        "4c157072-a60b-4cae-b891-225478b5d9e0": {
+          "id": "4c157072-a60b-4cae-b891-225478b5d9e0",
+          "name": "Entity Debugger",
+          "parameters": {
+            "name": "Source Objects"
+          }
+        }
+      },
+      "name": "SourceObjects",
+      "order": 0.3626756792381327
     }
   },
   "spaces": {

@@ -1,5 +1,6 @@
 import * as ecs from '@8thwall/ecs'
 import { addCleanup, doCleanup } from '../event-cleaner'
+import { WebXRController } from 'three'
 
 const createRealityReadyHandler = () => (e) => {
     console.log("REALITY READY -> ", e)
@@ -15,6 +16,8 @@ ecs.registerComponent({
         //     world.events.removeListener(world.events.globalId, ecs.events.REALITY_READY, realityReadyHandler);
         // };
         // addCleanup(component, cleanup);
+
+        
     },
     remove: (world, component) => {
         doCleanup(component);

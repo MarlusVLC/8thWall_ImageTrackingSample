@@ -1,10 +1,38 @@
 import * as ecs from '@8thwall/ecs';
 import * as transformHelper from './transform-Helper';
+import { z } from "zod";
+import { addCleanup, doCleanup } from './eventTesting/event-cleaner';
 
 const FORWARD_OFFSET_RAD = Math.PI; // offset de 90 graus para compensar a orientação do modelo (que aponta para o eixo X, enquanto a função lookAt assume que o objeto aponta para o eixo Z)
 
-const pointFollower = ecs.registerComponent({
-    name: 'point-follower',
+const ScaleDataSchema = z.object({
+    scaleFactor: z.number().default(1),
+    shouldScaleTranslation: z.boolean().default(false),
+    shouldScaleTargetRadius: z.boolean().default(false),
+    shouldScaleOriginRadius: z.boolean().default(false),
+    shouldScaleRotationSpeed: z.boolean().default(false),
+})
+
+const createScalingHandler = (schemaAttribute, eid: ecs.Eid) => (e: {data: unknown}) => {
+    const payloadData = ScaleDataSchema.safeParse(e.data); 
+    if (!payloadData.success){
+        console.log(`Schema com dados incorretos = `, payloadData.error)
+        return;
+    }
+
+    const data = payloadData.data;
+    const schemaCursor = schemaAttribute.get(eid);
+
+    console.log("Scaling Forward with the following scale = ", data.scaleFactor);
+
+    if (data.shouldScaleTranslation)  schemaCursor.translationSpeed *= data.scaleFactor;
+    if (data.shouldScaleTargetRadius) schemaCursor.targetRadius *= data.scaleFactor;
+    if (data.shouldScaleOriginRadius) schemaCursor.originRadius *= data.scaleFactor;
+    if (data.shouldScaleRotationSpeed) schemaCursor.rotationSpeed *= data.scaleFactor;
+}
+
+const localSpacePointFollower = ecs.registerComponent({
+    name: 'Local Space Point Follower',
     schema: {
         origin: ecs.eid,
         target: ecs.eid,
@@ -19,7 +47,17 @@ const pointFollower = ecs.registerComponent({
         originRadius: 1,
         rotationSpeed: 90,
     },
+    add: (world, component) => {
+        const scalingHandler = createScalingHandler(component.schemaAttribute, component.eid);
+        world.events.addListener(component.eid, 'scaled', scalingHandler)
 
+        addCleanup(component, () => {
+            world.events.removeListener(component.eid, 'scaled', scalingHandler)
+        })
+    },
+    remove: (world, component) => {
+        doCleanup(component);
+    },
     stateMachine: ({world, eid, entity, schemaAttribute, defineState}) => {
         // let originPos: ecs.math.Vec3;
         let originLocalPos: ecs.math.Vec3;
@@ -27,7 +65,6 @@ const pointFollower = ecs.registerComponent({
         let currentTarget: ecs.Entity;
         let currentStateID: string | { name: string; };
 
-        let tickCount = 0;
 
         const ROTATION_EPSILON_DEGREES = 0.5;
 
@@ -43,6 +80,7 @@ const pointFollower = ecs.registerComponent({
         const schema = schemaAttribute.get(eid);
         const target = world.getEntity(schema.target);
         const targetPosition = () => target.getWorldPosition();
+
         
         // const pitchLock = entity.getWorldQuaternion().pitchYawRollDegrees().x;
         // const yawLock = entity.getWorldQuaternion().pitchYawRollDegrees().y;
@@ -103,7 +141,7 @@ const pointFollower = ecs.registerComponent({
         // let tickCount = 0;
         followingState
             .onEnter(() => {
-                // console.log('point-follower: followingState.onEnter()');
+                console.log('point-follower: followingState.onEnter()');
                 // originPos = entity.getWorldPosition().clone();
                 // originLocalPos = entity.getLocalPosition().clone();
                 currentStateID = followingState;
@@ -149,4 +187,4 @@ const pointFollower = ecs.registerComponent({
     }
 })
 
-export { pointFollower };
+export { localSpacePointFollower, ScaleDataSchema };

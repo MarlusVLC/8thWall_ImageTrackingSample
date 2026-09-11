@@ -13,7 +13,7 @@ const createRealityImageDetectionHandler = (detectionStatus: 'FOUND' | 'LOST' | 
     //     rotation = ${JSON.stringify(data.rotation)} | 
     //     scale = ${data.scale}`)
     // const p = data.properties;
-    // console.log(`${detectionStatus} image PROPERTIES -> width = ${p.width} | height = ${p.height} | original width = ${p.originalWidth} | original height = ${p.originalHeight} | isRotated = ${p.isRotated} `)
+    // console.log(`${detectionStatus} image PROPERTIES -> width = ${p.width} | height = ${p.height} | original width = ${p.originalWidth} | original height = ${p.originalHeight} | isRotated = ${p.isRotated} | left = ${p.left} | top = ${p.top} | moveable = ${p.moveable} `)
     // switch(data.type){
     //     case 'FLAT':
     //         console.log(`FLAT image properties -> scaledWidth = ${data.scaledWidth} | scaledHeight = ${data.scaledHeight}`);
