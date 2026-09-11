@@ -1,5 +1,4 @@
 import * as ecs from '@8thwall/ecs';
-import { getName } from '../entityDebugger'
 import { ScaleDataSchema as followerSchema } from './../localspace-point-follower';
 import { ScaleDataSchema as touchMoverSchema } from './../touch-mover'
 import { addCleanup, doCleanup } from './../eventTesting/event-cleaner';

@@ -33,10 +33,10 @@ const touchMover = ecs.registerComponent({
     },
     add: (world, component) => {
         const scalingHandler = createScalingHandler(component.schemaAttribute, component.eid);
-        world.events.addListener(world.events.globalId, 'scaled', scalingHandler);
+        world.events.addListener(component.eid, 'scaled', scalingHandler);
 
         addCleanup(component, () => {
-            world.events.removeListener(world.events.globalId, 'scaled', scalingHandler);
+            world.events.removeListener(component.eid, 'scaled', scalingHandler);
         });
     },
     remove: (world, component) => {
