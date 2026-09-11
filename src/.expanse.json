@@ -1884,8 +1884,8 @@
               "type": "entity",
               "id": "0bd7b199-657f-4131-8e61-abdac127c994"
             },
-            "translationSpeed": 1,
-            "targetRadius": 0.2,
+            "translationSpeed": 0.2,
+            "targetRadius": 0.1,
             "originRadius": 0.1,
             "rotationSpeed": 120
           }
@@ -1945,7 +1945,7 @@
           "id": "ca867e49-8110-4325-99fc-476ed3ab8528",
           "name": "touch-mover",
           "parameters": {
-            "translationSpeed": 25
+            "translationSpeed": 8
           }
         },
         "08c4fff5-90c5-4bd1-9be6-61629ea761d3": {
